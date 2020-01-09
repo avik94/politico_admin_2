@@ -54,14 +54,14 @@ export default class StateList extends Vue {
     if(this.editIndex === 0){
       const data = {
         "token": this.token,
-        "name" : this.state
+        "name" : this.state.replace(/\b[a-z]/g, (x) => x.toUpperCase())
       }
       console.log(data)
       const resData = await axios.post(this.baseUrl+"add-edit-state", data);
     }else{
       const data = {
         "token": this.token,
-        "name" : this.state,
+        "name" : this.state.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "id"   :this.editData.id
       }
       console.log(data)

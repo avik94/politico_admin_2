@@ -48,7 +48,7 @@ export default class PoliticalSpectrumList extends Vue {
   selectType = "";
 
   answer:any = [];
-  answerVal:any = []
+  answerVal:any = [];
 
   bird = false;
   mcq = false;
@@ -81,13 +81,15 @@ export default class PoliticalSpectrumList extends Vue {
     console.log(this.token)
     //geting all distric list
     const districData = await axios.post(this.baseUrl+"get-all-election-list", {"token": this.token});
-    console.log(districData.data.data)    
+    // console.log(districData.data.data)    
     const newDistData = districData.data.data.map((el:any)=>{
       return {
         id: el.id,
         name: el.name
       }
     })
+    // sorting the election
+    newDistData.sort((a:any, b:any) => (a.name > b.name) ? 1 : -1);
     this.items = newDistData;
     this.items2 = newDistData;
     this.componentLoader = false;
@@ -100,11 +102,9 @@ export default class PoliticalSpectrumList extends Vue {
     if(this.selectType === "mcq"){
       const data = {                       // New Insert
           "token": this.token,
-          "name" : this.spectrumMcq,
+          "name" : this.spectrumMcq.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
           "electionId": this.election2,
-          "minName": this.minMcq,
-          "maxName": this.maxMcq,
-          "issue": this.issueMcq,
+          "issue": this.issueMcq.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
           "type": this.selectType,
           "answers": [...this.answerVal]
         }
@@ -114,11 +114,11 @@ export default class PoliticalSpectrumList extends Vue {
     }else if(this.selectType === "bard"){
       const data = {
         "token": this.token,
-        "name" : this.spectrum,
+        "name" : this.spectrum.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "electionId": this.election2,
-        "minName": this.min,
-        "maxName": this.max,
-        "issue": this.issue,
+        "minName": this.min.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
+        "maxName": this.max.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
+        "issue": this.issue.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "type": this.selectType,
       }
       console.log(data);
@@ -127,9 +127,9 @@ export default class PoliticalSpectrumList extends Vue {
     }else if(this.selectType === "text"){
       const data = {
         "token": this.token,
-        "name" : this.spectrumText,
+        "name" : this.spectrumText.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "electionId": this.election2,
-        "issue": this.issueText,
+        "issue": this.issueText.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "type": this.selectType,
       }
       console.log(data);
@@ -151,9 +151,9 @@ export default class PoliticalSpectrumList extends Vue {
     if(this.selectType === "mcq"){
       const data = {                       
         "token": this.token,
-        "name" : this.spectrumMcq,
+        "name" : this.spectrumMcq.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "electionId": this.election2,
-        "issue": this.issueMcq,
+        "issue": this.issueMcq.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "type": this.selectType,
         "id": this.editData.id,
         "answers": [...this.answerVal]
@@ -171,13 +171,14 @@ export default class PoliticalSpectrumList extends Vue {
     }else if(this.selectType === "bard"){
       const data = {
         "token": this.token,
-        "name" : this.spectrum,
+        "name" : this.spectrum.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "electionId": this.election2,
-        "minName": this.min,
-        "maxName": this.max,
+        "minName": this.min.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
+        "maxName": this.max.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "id": this.editData.id,
-        "issue": this.issue,
+        "issue": this.issue.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "type": this.selectType,
+        "answers": []
       }
       const resData = await axios.post(this.baseUrl+"add-edit-political-spectrum",data);
       const res = await axios.post(this.baseUrl+"get-political-spectrum-list",{
@@ -190,12 +191,14 @@ export default class PoliticalSpectrumList extends Vue {
     }else if(this.selectType === "text"){
       const data = {
         "token": this.token,
-        "name" : this.spectrumText,
+        "name" : this.spectrumText.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "electionId": this.election2,
         "id": this.editData.id,
-        "issue": this.issueText,
+        "issue": this.issueText.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "type": this.selectType,
+        "answers": []
       }
+      console.log(data)
       const resData = await axios.post(this.baseUrl+"add-edit-political-spectrum",data);
       const res = await axios.post(this.baseUrl+"get-political-spectrum-list",{
         token: this.token,
@@ -234,7 +237,7 @@ export default class PoliticalSpectrumList extends Vue {
       this.issueMcq = item.issueName;
       // this.minMcq = item.lowText;
       // this.maxMcq = item.highText;
-      let x = item.answers.split("|");
+      let x = item.answers.split(" | ");
       this.answerVal = x;
       for(let i of x){
         this.answer.push("")
@@ -345,4 +348,19 @@ export default class PoliticalSpectrumList extends Vue {
     return arr;
   }
   // :rules="[v => !!v || 'Item is required']"
+  answerRule= [
+    (v:any) =>!!v || 'Item is required',
+    (v:any) => (v || '').length <= 100 || 'Max 100 Characters'
+  ]
+
+  issueRule= [
+    (v:any) =>!!v || 'Item is required',
+    (v:any) => (v || '').length <= 80 || 'Max 80 Characters'
+  ];
+
+  issueDescriptionRule= [
+    (v:any) => (v || '').length <= 250 || 'Max 250 Characters'
+  ];
+
+  
 }

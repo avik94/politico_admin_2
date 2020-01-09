@@ -50,7 +50,7 @@ export default class LocalCouncilList extends Vue {
         name: el.name
       }
     })
-    this.items = newDistData;
+    this.items = newDistData.sort((a:any, b:any) => (a.name > b.name) ? 1 : -1);
 
     // getting all local council data
     const resData = await axios.post(this.baseUrl+"get-all-local-council-list",{"token": this.token});
@@ -73,7 +73,7 @@ export default class LocalCouncilList extends Vue {
     if(this.editIndex === 0){
       const data = {                       // New Insert
         "token": this.token,
-        "name" : this.localCouncil,
+        "name" : this.localCouncil.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "districtId": this.distric
       }
       const resData = await axios.post(this.baseUrl+"add-edit-local-council",data)
@@ -81,7 +81,7 @@ export default class LocalCouncilList extends Vue {
       if (typeof(this.distric) === "number"){
         const data = {
           "token": this.token,
-          "name": this.localCouncil,
+          "name": this.localCouncil.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
           "districtId": this.distric,
           "id": this.editData.localCouncilId,
           "active": this.editData.active
@@ -91,7 +91,7 @@ export default class LocalCouncilList extends Vue {
       }else{
         const data = {
             "token": this.token,
-            "name": this.localCouncil,
+            "name": this.localCouncil.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
             // @ts-ignore
             "districtId": this.distric.id,
             "id": this.editData.localCouncilId,

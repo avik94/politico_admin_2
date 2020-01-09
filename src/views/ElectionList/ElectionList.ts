@@ -52,14 +52,14 @@ export default class ElectionList extends Vue {
     if(this.editIndex === 0){
       const data = {
         "token": this.$store.state.token,
-        "name" : this.election
+        "name" : this.election.replace(/\b[a-z]/g, (x) => x.toUpperCase())
       }
       console.log(data)
       const resData = await axios.post(this.baseUrl+"add-edit-election", data);
     }else{
       const data = {
         "token": this.token,
-        "name" : this.election,
+        "name" : this.election.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "id"   :this.editData.id
       }
       console.log(data)

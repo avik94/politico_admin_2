@@ -29,15 +29,21 @@
                             v-model="distric"
                             item-text="name"
                             item-value="id"
-                            label="Select Distric"
-                            outlined
-                          ></v-select>
+                            label
+                            outlined>
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Select Distric
+                            </template>
+                          </v-select>
                          <v-text-field
                           v-model="localCouncil"
                           :rules="[v => !!v || 'Item is required']"
-                          label="Local Council Name"
-                          outlined
-                          ></v-text-field>
+                          label
+                          outlined>
+                          <template #label>
+                            <span class="red--text"><strong>* </strong></span>Local Council Name
+                          </template>
+                         </v-text-field>
                         </v-form>
                       </v-col>
                     </v-row>

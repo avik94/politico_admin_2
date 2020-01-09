@@ -29,15 +29,21 @@
                             v-model="state"
                             item-text="name"
                             item-value="id"
-                            label="Select State"
-                            outlined
-                          ></v-select>
+                            label
+                            outlined>
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Select State
+                            </template>
+                          </v-select>
                          <v-text-field
                           v-model="distric"
                           :rules="[v => !!v || 'Item is required']"
-                          label="Distric Name"
-                          outlined
-                          ></v-text-field>
+                          label
+                          outlined>
+                          <template #label>
+                            <span class="red--text"><strong>* </strong></span>Distric Name
+                          </template>
+                         </v-text-field>
                         </v-form>
                       </v-col>
                     </v-row>

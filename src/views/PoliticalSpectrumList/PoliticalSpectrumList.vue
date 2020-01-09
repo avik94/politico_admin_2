@@ -53,30 +53,40 @@
                       ></v-select> -->
                       <v-text-field
                         v-model="issue"
-                        :rules="[v => !!v || 'Item is required']"
-                        label="Issue"
-                        outlined
-                      ></v-text-field>
+                        :rules="issueRule"
+                        label
+                        outlined>
+                        <template #label>
+                          <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
+                        </template>
+                      </v-text-field>
 
                       <v-text-field
                         v-model="spectrum"
-                        label="Issue Description"
+                        :rules="issueDescriptionRule"
+                        label="Issue Description  (Max 250 Characters)"
                         outlined
                       ></v-text-field>
 
                       <v-text-field
                         v-model="min"
-                        label="Min Limit"
+                        label
                         :rules="[v => !!v || 'Item is required']"
-                        outlined
-                      ></v-text-field>
+                        outlined>
+                        <template #label>
+                          <span class="red--text"><strong>* </strong></span>Min Limit
+                        </template>
+                      </v-text-field>
 
                       <v-text-field
                         v-model="max"
-                        label="Max Limit"
+                        label
                         :rules="[v => !!v || 'Item is required']"
-                        outlined
-                      ></v-text-field>                      
+                        outlined>
+                        <template #label>
+                          <span class="red--text"><strong>* </strong></span>Max Limit
+                        </template>
+                      </v-text-field>                      
                     </div>
 
                     <div v-if="text">
@@ -90,18 +100,22 @@
                       ></v-select> -->
                       <v-text-field
                         v-model="issueText"
-                        label="Issue"
-                        :rules="[v => !!v || 'Item is required']"
-                        outlined
-                      ></v-text-field>
+                        label
+                        :rules="issueRule"
+                        outlined>
+                        <template #label>
+                          <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
+                        </template>
+                      </v-text-field>
 
                       <v-text-field
-                        v-model="spectrumText"
-                        label="Issue Description"
+                        :rules="issueDescriptionRule"
+                        label="Issue Description (Max 250 Characters)"
                         outlined
                       ></v-text-field>
                       
                     </div>
+
                     <div v-if="mcq">
                       <!-- <v-select
                         v-model="election"
@@ -113,14 +127,19 @@
                       ></v-select> -->
                       <v-text-field
                         v-model="issueMcq"
-                        label="Issue"
-                        :rules="[v => !!v || 'Item is required']"
-                        outlined
-                      ></v-text-field>
+                        label
+                        :rules="issueRule"
+                        required
+                        outlined>
+                        <template #label>
+                          <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
+                        </template>
+                      </v-text-field>
 
                       <v-text-field
                         v-model="spectrumMcq"
-                        label="Issue Description"
+                        label="Issue Description (Max 250 Characters)"
+                        :rules="issueDescriptionRule"
                         outlined
                       ></v-text-field>
 
@@ -140,19 +159,25 @@
                       <v-select
                         v-model="option"
                         :items="chooseOption"
-                        label="Choose Number of Answer"
+                        label
                         :rules="[v => !!v || 'Item is required']"
                         outlined
-                        @input="optionSelect(option)"
-                      ></v-select>
+                        @input="optionSelect(option)">
+                        <template #label>
+                          <span class="red--text"><strong>* </strong></span>Choose Number of Answer
+                        </template>
+                      </v-select>
                       
                       <div v-for="(item,index) in answer" v-bind:key="index">
                         <v-text-field
                           v-model="answerVal[index]"
-                          :rules="[v => !!v || 'Item is required']"
-                          label="Answer"                     
-                          outlined
-                        ></v-text-field>  
+                          :rules="answerRule"
+                          label                     
+                          outlined>
+                          <template #label>
+                            <span class="red--text"><strong>* </strong></span>Answer (Max 100 Characters)
+                          </template>
+                        </v-text-field>  
                       </div>
 
                     </div>
@@ -196,33 +221,42 @@
                             outlined
                           ></v-select> -->
 
-                           <v-text-field
+                          <v-text-field
                             v-model="issue"
-                            label="Issue"
-                            :rules="[v => !!v || 'Item is required']"
-                            outlined
-                          ></v-text-field>
+                            label
+                            :rules="issueRule"
+                            outlined>
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
+                            </template>
+                          </v-text-field>
                           
                           <v-text-field
-                            v-model="spectrum"
-                            label="Issue Description"
+                            v-model="spectrum"        
+                            label="Issue Description (Max 250 Characters)"
+                            :rules="issueDescriptionRule"
                             outlined
                           ></v-text-field>
 
                           <v-text-field
                             v-model="min"
-                            label="Min Limit"
+                            label
                             :rules="[v => !!v || 'Item is required']"
-                            outlined
-                          ></v-text-field>
+                            outlined>
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Min Limit
+                            </template>
+                          </v-text-field>
 
                           <v-text-field
                             v-model="max"
                             label="Max Limit"
                             :rules="[v => !!v || 'Item is required']"
-                            outlined
-                          ></v-text-field>
-                         
+                            outlined>
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Max Limit
+                            </template>
+                          </v-text-field>                         
                         </div>
 
                         <div v-if="text">
@@ -237,18 +271,23 @@
 
                           <v-text-field
                             v-model="issueText"
-                            label="Issue"
-                            :rules="[v => !!v || 'Item is required']"
-                            outlined
-                          ></v-text-field>
+                            label
+                            :rules="issueRule"
+                            outlined>
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
+                            </template>
+                          </v-text-field>
 
                           <v-text-field
                             v-model="spectrumText"
-                            label="Issue Description"
+                            label="Issue Description (Max 250 Characters)"
+                            :rules="issueDescriptionRule"                          
                             outlined
                           ></v-text-field>
                           
                         </div>
+                        
                         <div v-if="mcq">
                           <!-- <v-select
                             v-model="election"
@@ -260,14 +299,18 @@
                           ></v-select> -->
                           <v-text-field
                             v-model="issueMcq"
-                            label="Issue"
-                            :rules="[v => !!v || 'Item is required']"
-                            outlined
-                          ></v-text-field>
+                            label
+                            :rules="issueRule"
+                            outlined>
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
+                            </template>
+                          </v-text-field>
 
                           <v-text-field
                             v-model="spectrumMcq"
-                            label="Issue Description"
+                            label="Issue Description (Max 250 Characters)"
+                            :rules="issueDescriptionRule"
                             outlined
                           ></v-text-field>
 
@@ -286,19 +329,25 @@
                           <v-select
                             v-model="option"
                             :items="chooseOption"
-                            label="Choose Number of Answer"
+                            label
                             :rules="[v => !!v || 'Item is required']"
                             outlined
-                            @input="optionSelect(option)"
-                          ></v-select>
+                            @input="optionSelect(option)">
+                            <template #label>
+                              <span class="red--text"><strong>* </strong></span>Choose Number of Answer
+                            </template> 
+                          </v-select>
                           
                           <div v-for="(item,index) in answer" v-bind:key="item">
                             <v-text-field
                               v-model="answerVal[index]"
-                              :rules="[v => !!v || 'Item is required']"
+                              :rules="answerRule"
                               label="Answer"                     
-                              outlined
-                            ></v-text-field>
+                              outlined>
+                              <template #label>
+                                <span class="red--text"><strong>* </strong></span>Answer (Max 100 Characters)
+                              </template>
+                            </v-text-field>
                           </div>
 
                         </div>

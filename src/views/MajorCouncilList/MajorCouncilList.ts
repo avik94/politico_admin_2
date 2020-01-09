@@ -50,7 +50,7 @@ export default class MajorCouncilList extends Vue {
         name: el.name
       }
     })
-    this.items = newDistData;
+    this.items = newDistData.sort((a:any, b:any) => (a.name > b.name) ? 1 : -1);
 
     // getting all local council data
     const resData = await axios.post(this.baseUrl+"get-all-major-bill-list",{"token": this.token});
@@ -73,7 +73,7 @@ export default class MajorCouncilList extends Vue {
     if(this.editIndex === 0){
       const data = {                       // New Insert
         "token": this.token,
-        "name" : this.majorBill,
+        "name" : this.majorBill.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "localCouncilId": this.localCouncil
       }
       const resData = await axios.post(this.baseUrl+"add-edit-major-bill",data)
@@ -82,7 +82,7 @@ export default class MajorCouncilList extends Vue {
       if(typeof(this.localCouncil) === "number"){
         const data = {
           "token": this.token,
-          "name": this.majorBill,
+          "name": this.majorBill.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
           "localCouncilId": this.localCouncil,
           "id": this.editData.majorBillId,
           "active": this.editData.active
@@ -94,7 +94,7 @@ export default class MajorCouncilList extends Vue {
       }else{
         const data = {
             "token": this.token,
-            "name": this.majorBill,
+            "name": this.majorBill.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
             // @ts-ignore
             "localCouncilId": this.localCouncil.id,
             "id": this.editData.majorBillId,

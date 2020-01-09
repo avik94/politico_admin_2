@@ -25,7 +25,7 @@
 
     <v-app-bar app dark class="navbarHeader" height="50">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <h3 style="padding-left:30px;color:rgb(81, 77, 77);">Politico Admin</h3>
+      <h3 style="padding-left:30px;color: #fff;">Politico Admin</h3>
     </v-app-bar>
 
     <v-content class="contentBackground">
@@ -47,7 +47,7 @@
   padding: 15px;
 }
 .navbarHeader{
-  background-image: linear-gradient(to left, #c7ccce , #98999e );
+  background-image: linear-gradient(to left, #3472e6 , #012188c9 );
 } 
 .leftSidebar{
   background-image: linear-gradient(to bottom, #13161a , #031f36 );

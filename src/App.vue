@@ -21,7 +21,7 @@
   padding: 15px;
 }
 .navbarHeader{
-  background-image: linear-gradient(to left, #c7ccce , #98999e );
+  background-image: linear-gradient(to left, #1336ff , #0010a5 );
 } 
 .leftSidebar{
   background-image: linear-gradient(to bottom, #13161a , #031f36 );

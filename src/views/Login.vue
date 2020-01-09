@@ -12,14 +12,14 @@
                         v-model="email"
                         label="Email"
                         :rules="[v => !!v || 'Email is required']"
-                        outlined
+                        solo
                     ></v-text-field>
                     <v-text-field
                         v-model="password"
                         label="Password"
                         :rules="[v => !!v || 'Password is required']"
                         type = "password"
-                        outlined
+                        solo
                     ></v-text-field>
                 </v-form>              
               <div class="my-2">

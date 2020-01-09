@@ -26,9 +26,12 @@
                          <v-text-field
                           v-model="election"
                           :rules="[v => !!v || 'Item is required']"
-                          label="Add Election"
-                          outlined
-                          ></v-text-field>
+                          label
+                          outlined>
+                          <template #label>
+                            <span class="red--text"><strong>* </strong></span>Add Election
+                          </template>
+                         </v-text-field>
                         </v-form>
                       </v-col>
                     </v-row>

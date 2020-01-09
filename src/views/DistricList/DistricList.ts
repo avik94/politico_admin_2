@@ -48,7 +48,8 @@ export default class DistricList extends Vue {
     this.token = this.$store.state.token;
     // geting all state list
     const stateData = await axios.post(this.baseUrl+"get-all-state-list", {"token": this.token});
-    this.items = stateData.data.data;
+    let sateList = stateData.data.data.sort((a:any, b:any) => (a.name > b.name) ? 1 : -1);
+    this.items = sateList;
 
     // geting all distric data
     const resData = await axios.post(this.baseUrl+"get-all-district-list",{"token": this.token});
@@ -72,7 +73,7 @@ export default class DistricList extends Vue {
     if(this.editIndex === 0){                 // New insert
       const data = {
         "token": this.token,
-        "name" : this.distric,
+        "name" : this.distric.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
         "stateId": this.state
       }
       // console.log(data)
@@ -82,7 +83,7 @@ export default class DistricList extends Vue {
         const data = {
           "token": this.token,
           "id"   : this.editData.districId,
-          "name" : this.distric,
+          "name" : this.distric.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
           "stateId": this.state,
           "active": this.editData.active
         }
@@ -94,7 +95,7 @@ export default class DistricList extends Vue {
         const data = {
           "token": this.token,
           "id"   : this.editData.districId,
-          "name" : this.distric,
+          "name" : this.distric.replace(/\b[a-z]/g, (x) => x.toUpperCase()),
           // @ts-ignore
           "stateId": this.state.id,
           "active": this.editData.active
