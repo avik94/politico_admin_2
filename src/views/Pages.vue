@@ -26,6 +26,10 @@
     <v-app-bar app dark class="navbarHeader" height="50">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <h3 style="padding-left:30px;color: #fff;">Politico Admin</h3>
+      <v-spacer></v-spacer>
+      <v-btn tile outlined primary  @click = "logout">
+        <v-icon left>mdi-power</v-icon> Log Out
+      </v-btn>
     </v-app-bar>
 
     <v-content class="contentBackground">
@@ -64,19 +68,17 @@ import {Component} from "vue-property-decorator"
 export default class Pages extends Vue {
     drawer = null
     items =  [
-      // { title: "State", icon: "mdi-view-dashboard", url: "/" },
       { title: "State", icon: "mdi-view-dashboard", url: "/state-list" },
-      // { title: "Distric", icon: "mdi-image", url: "/distric" },
       { title: "District", icon: "mdi-image", url: "/distric-list" },
-      // { title: "Local Council", icon: "mdi-help-box", url: "/local-council"},
       { title: "Local Council", icon: "mdi-help-box", url: "/local-council-list"},
-      // { title: "Major Council", icon: "mdi-view-dashboard", url: "/major-council" },
       { title: "Major Bill", icon: "mdi-view-dashboard", url: "/major-council-list" },
-      // { title: "Election", icon: "mdi-view-dashboard", url: "/election" },
       { title: "Election", icon: "mdi-view-dashboard", url: "/election-list" },
-      // { title: "Political Spectrum", icon: "mdi-view-dashboard", url: "/political-spectrum" },
       { title: "Political Spectrum", icon: "mdi-view-dashboard", url: "/political-spectrum-list" },
       
-    ]
+    ];
+    logout(){
+      this.$store.commit('storeToken',"");
+      this.$router.push({ path: 'login' });
+    }
 }
 </script>

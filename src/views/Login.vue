@@ -23,7 +23,13 @@
                     ></v-text-field>
                 </v-form>              
               <div class="my-2">
-                <v-btn medium style="color:#f2f2f2;background-color: #0b5ea5;" @click="submit()">Login</v-btn>
+                <v-btn 
+                  medium 
+                  style="color:#f2f2f2;background-color: #0b5ea5;" 
+                  @click="submit()"
+                  :loading="loading"
+                  >
+                  Login</v-btn>
               </div>
             </v-col>
             <v-alert v-if="warning" style="width:100%" :value="alert" color="pink" dark border="top" icon="mdi-alert-box" transition="scale-transition">
@@ -47,8 +53,10 @@ export default class Login extends Vue {
     email = "";
     password = "";
     warning = false;
+    loading = false;
 
     async submit(){
+      this.loading = true;
         const data = {
             "email": this.email,
             "password": this.password
@@ -63,6 +71,7 @@ export default class Login extends Vue {
             this.$store.commit('storeToken',res.data.data.token);
             this.$router.push({ path: 'state-list' });
         }
+        this.loading = false;
 
     }
 }
