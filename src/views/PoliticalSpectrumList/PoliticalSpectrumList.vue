@@ -41,7 +41,7 @@
                     :rules="[v => !!v || 'Item is required']"
                     outlined
                   ></v-select>
-                  <v-form  v-model="valid" ref="form">                  
+                  <v-form  v-model="valid1" ref="form1">                  
                     <div v-if="bird">
                       <!-- <v-select
                         v-model="election"
@@ -55,7 +55,7 @@
                         v-model="issue"
                         :rules="issueRule"
                         label
-                        outlined>
+                        outlined required>
                         <template #label>
                           <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
                         </template>
@@ -65,14 +65,14 @@
                         v-model="spectrum"
                         :rules="issueDescriptionRule"
                         label="Issue Description  (Max 250 Characters)"
-                        outlined
+                        outlined required
                       ></v-text-field>
 
                       <v-text-field
                         v-model="min"
                         label
                         :rules="[v => !!v || 'Item is required']"
-                        outlined>
+                        outlined required>
                         <template #label>
                           <span class="red--text"><strong>* </strong></span>Min Limit
                         </template>
@@ -82,7 +82,7 @@
                         v-model="max"
                         label
                         :rules="[v => !!v || 'Item is required']"
-                        outlined>
+                        outlined required>
                         <template #label>
                           <span class="red--text"><strong>* </strong></span>Max Limit
                         </template>
@@ -102,7 +102,7 @@
                         v-model="issueText"
                         label
                         :rules="issueRule"
-                        outlined>
+                        outlined required>
                         <template #label>
                           <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
                         </template>
@@ -111,7 +111,7 @@
                       <v-text-field
                         :rules="issueDescriptionRule"
                         label="Issue Description (Max 250 Characters)"
-                        outlined
+                        outlined 
                       ></v-text-field>
                       
                     </div>
@@ -129,8 +129,7 @@
                         v-model="issueMcq"
                         label
                         :rules="issueRule"
-                        required
-                        outlined>
+                        outlined required>
                         <template #label>
                           <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
                         </template>
@@ -162,7 +161,7 @@
                         label
                         :rules="[v => !!v || 'Item is required']"
                         outlined
-                        @input="optionSelect(option)">
+                        @input="optionSelect(option)" required>
                         <template #label>
                           <span class="red--text"><strong>* </strong></span>Choose Number of Answer
                         </template>
@@ -173,7 +172,7 @@
                           v-model="answerVal[index]"
                           :rules="answerRule"
                           label                     
-                          outlined>
+                          outlined required>
                           <template #label>
                             <span class="red--text"><strong>* </strong></span>Answer (Max 100 Characters)
                           </template>
@@ -182,7 +181,7 @@
 
                     </div>
                   </v-form>
-                  <v-btn color="blue darken-1" dark @click="submit()" :disabled="!valid" :loading="loading">Save</v-btn>
+                  <v-btn color="blue darken-1" dark @click="submit()" :disabled="!valid1" :loading="loading">Save</v-btn>
                 </v-col>
               </v-row>
             </v-card>

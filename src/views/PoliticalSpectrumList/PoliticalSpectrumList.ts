@@ -13,6 +13,7 @@ export default class PoliticalSpectrumList extends Vue {
   dialog2= false;
   loading= false;
   valid= true;
+  valid1 = true;
   editIndex = 0;
   editData:any = ""
   baseUrl = "";
@@ -258,13 +259,18 @@ export default class PoliticalSpectrumList extends Vue {
   }
 
   newItem(){
-    this.selectType = "mcq";    
+    this.selectType = "mcq"; 
     // this.editIndex = 0;   
     this.bird = false;
     this.text = false;
     this.mcq = true;
     // @ts-ignore
-    this.$refs.form.reset();
+    this.$refs.form1.reset();   
+    // @ts-ignore
+    this.$refs.form.reset();  
+    // if(this.spectrum || this.spectrumMcq || this.spectrumText){
+    
+    // }
     
   }
 
@@ -294,16 +300,22 @@ export default class PoliticalSpectrumList extends Vue {
       this.bird = true;
       this.text = false;
       this.mcq = false;
+      // @ts-ignore
+      this.$refs.form1.reset();  
     }
     else if(data === "mcq"){
       this.bird = false;
       this.text = false;
       this.mcq = true;
+      // @ts-ignore
+      this.$refs.form1.reset();  
     }
     else if(data === "text"){
       this.bird = false;
       this.text = true;
       this.mcq = false;
+      // @ts-ignore
+      this.$refs.form1.reset();  
     }
   }
   
@@ -349,12 +361,12 @@ export default class PoliticalSpectrumList extends Vue {
   }
   // :rules="[v => !!v || 'Item is required']"
   answerRule= [
-    (v:any) =>!!v || 'Item is required',
+    (v:any) => !!v || 'Item is required',
     (v:any) => (v || '').length <= 100 || 'Max 100 Characters'
   ]
 
   issueRule= [
-    (v:any) =>!!v || 'Item is required',
+    (v:any) => !!v || 'Item is required',
     (v:any) => (v || '').length <= 80 || 'Max 80 Characters'
   ];
 
