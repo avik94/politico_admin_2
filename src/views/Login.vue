@@ -50,28 +50,28 @@ import axios from 'axios';
 
 @Component
 export default class Login extends Vue {
-    email = "";
-    password = "";
-    warning = false;
-    loading = false;
+    public email = "";
+    public password = "";
+    public warning = false;
+    public loading = false;
 
-    async submit(){
+    public async submit() {
       this.loading = true;
-        const data = {
-            "email": this.email,
-            "password": this.password
-        }
-        const res = await axios.post('https://xuntasb2dc.execute-api.us-east-1.amazonaws.com/api/login',data)
-        if(res.data.error === true){
+      const data = {
+            email: this.email,
+            password: this.password,
+        };
+      const res = await axios.post('https://xuntasb2dc.execute-api.us-east-1.amazonaws.com/api/login', data);
+      if (res.data.error === true) {
             this.warning = true;
-            setTimeout(()=>{
+            setTimeout(() => {
               this.warning = false;
-            },1500)
-        }else{
-            this.$store.commit('storeToken',res.data.data.token);
+            }, 1500);
+        } else {
+            this.$store.commit('storeToken', res.data.data.token);
             this.$router.push({ path: 'state-list' });
         }
-        this.loading = false;
+      this.loading = false;
 
     }
 }

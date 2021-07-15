@@ -30,27 +30,19 @@
               </v-btn>
             </template>
 
-            <v-card style="padding:20px">
+            <v-card style="padding:20px;">
               <v-row>
                 <v-col cols="12">
                   <v-select
                     v-model="selectType"
                     :items="selectTypeItem"
-                    @input="itemChanged"
+                    @change="itemChanged"
                     label="Select Type"
                     :rules="[v => !!v || 'Item is required']"
                     outlined
                   ></v-select>
                   <v-form  v-model="valid1" ref="form1">                  
                     <div v-if="bird">
-                      <!-- <v-select
-                        v-model="election"
-                        :items="items"
-                        item-text="name"
-                        item-value="id"
-                        label="Select Election"
-                        outlined
-                      ></v-select> -->
                       <v-text-field
                         v-model="issue"
                         :rules="issueRule"
@@ -204,12 +196,12 @@
                         <v-select
                           v-model="selectType"
                           :items="selectTypeItem"
-                          @input="itemChanged"
+                          @change="itemChanged"
                           label="Select Type"
                           :rules="[v => !!v || 'Item is required']"
                           outlined
                         ></v-select>
-                       <v-form  v-model="valid" ref="form">                  
+                        <v-form  v-model="valid" ref="form">                  
                         <div v-if="bird">
                           <!-- <v-select
                             v-model="election"
@@ -224,7 +216,7 @@
                             v-model="issue"
                             label
                             :rules="issueRule"
-                            outlined>
+                            outlined required>
                             <template #label>
                               <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
                             </template>
@@ -259,20 +251,11 @@
                         </div>
 
                         <div v-if="text">
-                          <!-- <v-select
-                            v-model="election"
-                            :items="items"
-                            item-text="name"
-                            item-value="id"
-                            label="Select Election"
-                            outlined
-                          ></v-select> -->
-
                           <v-text-field
                             v-model="issueText"
                             label
                             :rules="issueRule"
-                            outlined>
+                            outlined required>
                             <template #label>
                               <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
                             </template>
@@ -283,24 +266,15 @@
                             label="Issue Description (Max 250 Characters)"
                             :rules="issueDescriptionRule"                          
                             outlined
-                          ></v-text-field>
-                          
+                          ></v-text-field>                          
                         </div>
                         
                         <div v-if="mcq">
-                          <!-- <v-select
-                            v-model="election"
-                            :items="items"
-                            item-text="name"
-                            item-value="id"
-                            label="Select Election"
-                            outlined
-                          ></v-select> -->
                           <v-text-field
                             v-model="issueMcq"
                             label
                             :rules="issueRule"
-                            outlined>
+                            outlined required>
                             <template #label>
                               <span class="red--text"><strong>* </strong></span>Issue (Max 80 Characters)
                             </template>
@@ -312,18 +286,6 @@
                             :rules="issueDescriptionRule"
                             outlined
                           ></v-text-field>
-
-                          <!-- <v-text-field
-                            v-model="minMcq"
-                            label="Min Limit"
-                            outlined
-                          ></v-text-field>
-
-                          <v-text-field
-                            v-model="maxMcq"
-                            label="Max Limit"
-                            outlined
-                          ></v-text-field> -->
 
                           <v-select
                             v-model="option"

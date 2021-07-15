@@ -4,14 +4,14 @@ import axios from 'axios';
 
 @Component({
   components: {
-  }
+  },
 })
 export default class State extends Vue {
-  name = "State";
+  public name = "State";
 
-  state = "";
+  public state = "";
 
-  submit(){
-    
+  public submit() {
+
   }
 }

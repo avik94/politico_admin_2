@@ -4,15 +4,15 @@ import { Component } from "vue-property-decorator";
 
 @Component({
   components: {
-  }
+  },
 })
 
 
 export default class Election extends Vue {
-  name = "Election";
-  election = "";
+  public name = "Election";
+  public election = "";
 
-  submit(){
-    
+  public submit() {
+
   }
 }

@@ -32,11 +32,11 @@
 </style>
 <script lang="ts">
 import Vue from "vue";
-import {Component} from "vue-property-decorator"
+import {Component} from "vue-property-decorator";
 @Component
 export default class App extends Vue {
-  drawer = null
-    items =  [
+  public drawer = null;
+    public items =  [
       // { title: "State", icon: "mdi-view-dashboard", url: "/" },
       { title: "State", icon: "mdi-view-dashboard", url: "/state-list" },
       // { title: "Distric", icon: "mdi-image", url: "/distric" },
@@ -49,7 +49,7 @@ export default class App extends Vue {
       { title: "Election", icon: "mdi-view-dashboard", url: "/election-list" },
       // { title: "Political Spectrum", icon: "mdi-view-dashboard", url: "/political-spectrum" },
       { title: "Political Spectrum", icon: "mdi-view-dashboard", url: "/political-spectrum-list" },
-      
-    ]
+
+    ];
 }
 </script>

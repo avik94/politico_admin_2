@@ -4,22 +4,22 @@ import { Component } from "vue-property-decorator";
 
 @Component({
   components: {
-  }
+  },
 })
 
 
 export default class PoliticalSpectrum extends Vue {
-  
-  election = "";
-  name = "";
-  min = "";
-  max = "";
-  issue = "";
 
-  items = ["election1", "election2"];
+  public election = "";
+  public name = "";
+  public min = "";
+  public max = "";
+  public issue = "";
 
-  submit(){
-    
+  public items = ["election1", "election2"];
+
+  public submit() {
+
   }
-  
+
 }

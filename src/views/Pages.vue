@@ -63,21 +63,21 @@
 
 <script lang="ts">
 import Vue from "vue";
-import {Component} from "vue-property-decorator"
+import {Component} from "vue-property-decorator";
 @Component
 export default class Pages extends Vue {
-    drawer = null
-    items =  [
+    public drawer = null;
+    public items =  [
       { title: "State", icon: "mdi-view-dashboard", url: "/state-list" },
       { title: "District", icon: "mdi-image", url: "/distric-list" },
       { title: "Local Council", icon: "mdi-help-box", url: "/local-council-list"},
       { title: "Major Bill", icon: "mdi-view-dashboard", url: "/major-council-list" },
       { title: "Election", icon: "mdi-view-dashboard", url: "/election-list" },
       { title: "Political Spectrum", icon: "mdi-view-dashboard", url: "/political-spectrum-list" },
-      
+
     ];
-    logout(){
-      this.$store.commit('storeToken',"");
+    public logout() {
+      this.$store.commit('storeToken', "");
       this.$router.push({ path: 'login' });
     }
 }

@@ -3,12 +3,12 @@ import { Component } from "vue-property-decorator";
 
 @Component
 export default class MajorCouncil extends Vue {
-  name = "Major-council";
-  localCouncil = "";
-  majorCouncil = "";
-  items = ["local council1", "local council2"]
+  public name = "Major-council";
+  public localCouncil = "";
+  public majorCouncil = "";
+  public items = ["local council1", "local council2"];
 
-  submit(){
-    
+  public submit() {
+
   }
 }

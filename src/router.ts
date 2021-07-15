@@ -26,18 +26,18 @@ export default new Router({
   routes: [
     {
       path: "/",
-      redirect: "/login"
+      redirect: "/login",
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
     },
     {
       path: '/pages',
       name: 'Pages',
       component: Pages,
-      children:[
+      children: [
         {
           path: '/state',
           name: 'State',
@@ -46,7 +46,7 @@ export default new Router({
         {
           path: '/distric',
           name: 'Distric',
-          component: Distric
+          component: Distric,
         },
         {
           path: '/local-council',
@@ -56,51 +56,51 @@ export default new Router({
         {
           path: '/major-council',
           name: 'MajorCouncil',
-          component: MajorCouncil 
+          component: MajorCouncil,
         },
         {
           path: '/election',
           name: 'Election',
-          component: Election
+          component: Election,
         },
         {
           path: '/political-spectrum',
           name: 'PoliticalSpectrum',
-          component: PoliticalSpectrum
+          component: PoliticalSpectrum,
         },
         {
           path: '/state-list',
           name: 'StateList',
-          component: StateList
+          component: StateList,
         },
         {
           path: '/distric-list',
           name: 'DistricList',
-          component: DistricList
+          component: DistricList,
         },
         {
           path: '/local-council-list',
           name: 'LocalCouncilList',
-          component: LocalCouncilList
+          component: LocalCouncilList,
         },
         {
           path: '/major-council-list',
           name: 'MajorCouncilList',
-          component: MajorCouncilList
+          component: MajorCouncilList,
         },
         {
           path: '/election-list',
           name: 'ElectionList',
-          component: ElectionList
+          component: ElectionList,
         },
         {
           path: '/political-spectrum-list',
           name: 'PoliticalSpectrumList',
-          component: PoliticalSpectrumList
+          component: PoliticalSpectrumList,
         },
-      ]
+      ],
     },
-    
-    
+
+
   ],
 });
